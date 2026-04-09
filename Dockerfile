@@ -1,10 +1,12 @@
-FROM centos:stream9
+FROM ubuntu:24.04
 
-RUN dnf -y update && \
-    dnf -y install nginx && \
-    dnf clean all
+ENV DEBIAN_FRONTEND=noninteractive
 
-COPY . /usr/share/nginx/html/
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    apt-get clean
+
+COPY . /var/www/html/
 
 EXPOSE 80
 
